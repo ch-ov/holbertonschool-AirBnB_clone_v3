@@ -78,9 +78,7 @@ class FileStorage:
 
     def count(self, cls=None):
         """ Count objects"""
-        if cls in classes:
-            total = self.__session.query(classes).count()
-        elif cls is None:
-            total = len(self.__session.query(cls))
+        if cls:
+            return len(self.all(cls))
         else:
-            return total
+            return len(self.all())

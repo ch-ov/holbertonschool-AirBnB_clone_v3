@@ -3,6 +3,8 @@
 Contains the TestDBStorageDocs and TestDBStorage classes
 """
 
+from models import storage
+from models.state import State
 from datetime import datetime
 import inspect
 import models
@@ -86,3 +88,15 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing file storage")
+    def test_get(self):
+        """Test get method"""
+        first_state_id = list(storage.all(State).values())[0].id
+        print("First state: {}".format(storage.get(State, first_state_id)))
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing file storage")
+    def test_count(self):
+        """Test count method"""
+        print("All objects: {}".format(storage.count()))
+        print("State objects: {}".format(storage.count(State)))
