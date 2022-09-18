@@ -8,4 +8,4 @@ from api.v1.views import app_views
 @app_views.route('/api/v1/status', strict_slashes=False)
 def status():
     """Return status: OK"""
-    return '{\n  "status": "OK"\n}\n'
+    return {"status": "OK"}
