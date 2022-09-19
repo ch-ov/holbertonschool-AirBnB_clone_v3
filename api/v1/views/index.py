@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Index to check status"""
 
-from flask import Flask
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage

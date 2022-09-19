@@ -15,11 +15,11 @@ def states():
     return jsonify(states_list)
 
 
-@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<string:state_id>', methods=['GET'], strict_slashes=False)
 def states_id(state_id=None):
     """ view state by id """
     try:
-        state = storage.get(State, state_id)
+        state = storage.get("State", state_id)
         return jsonify(state.to_dict())
     except Exception:
         abort(404)
