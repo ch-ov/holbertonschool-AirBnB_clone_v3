@@ -5,12 +5,13 @@ from flask import jsonify, abort, make_response, request
 from models import storage
 from models.state import State
 
+
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def states():
     """ view all states """
     states_list = []
     for i in storage.all(State).values():
-        states_list.append(state.to_dict())
+        states_list.append(i.to_dict())
     return jsonify(states_list)
 
 
