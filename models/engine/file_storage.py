@@ -79,6 +79,8 @@ class FileStorage:
                     return value
                 else:
                     return None
+        else:
+            return None
 
     def count(self, cls=None):
         """ Count objects"""
