@@ -2,11 +2,14 @@
 """Status of API"""
 
 from os import getenv
-from flask import Flask, Blueprint, jsonify
+from flask import Flask, Blueprint, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
+
 app = Flask(__name__)
 app.register_blueprint(app_views)
+cors = CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
@@ -18,7 +21,8 @@ def teardown_appcontext(self):
 @app.errorhandler(404)
 def error_handler(error):
     """returns a JSON-formatted 404 status code response"""
-    return jsonify({"error": "Not found"}), 404
+    error_mssg = {"error": "Not found"}
+    return make_response(jsonify(error_mssg), 404)
 
 
 if __name__ == "__main__":
