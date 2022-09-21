@@ -3,6 +3,7 @@
 connection.
 """
 
+import models
 import os
 from models.base_model import Base
 from models.amenity import Amenity
